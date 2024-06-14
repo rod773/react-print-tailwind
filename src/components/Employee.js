@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
+import { Printer } from "@bcyesil/capacitor-plugin-printer";
 
 const Employee = ({ employee }) => {
   let componentRef = useRef(null);
@@ -9,6 +10,18 @@ const Employee = ({ employee }) => {
     documentTitle: `${employee.name.replace(/\s/g, "-")}-Payslip`,
     onPrintError: () => alert("there is an error when printing"),
   });
+
+  const handlePrint1 = () => {
+    const content = componentRef.current;
+
+    Printer.print({ content })
+      .then(() => {
+        console.log("Print success");
+      })
+      .catch((error) => {
+        console.error("Print error:", error);
+      });
+  };
 
   return (
     <section
@@ -118,7 +131,7 @@ const Employee = ({ employee }) => {
         </div>
         <div className="print:hidden">
           <button
-            onClick={handlePrint}
+            onClick={handlePrint1}
             className="bg-cyan-500 px-6 py-2 text-white border border-cyan-500 font-bold rounded-md mb-3 w-full lg:w-fit my-6 max-w-sm"
           >
             Print Payslip
