@@ -1,0 +1,11 @@
+{
+  "appId": "com.example.app",
+  "appName": "react-print-tailwind",
+  "webDir": "build",
+  "ios.minVersion": "13",
+  "server": {
+    "hostname": "app.reactprint.com",
+    "allowNavigation": ["*"],
+    "cleartext": true
+  }
+}
